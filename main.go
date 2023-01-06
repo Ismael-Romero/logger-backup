@@ -39,6 +39,7 @@ func main() {
 		loggerSystem.Info(name + "logged in")
 		loggerSystem.Warning(name + "logged in without password")
 		loggerSystem.Error("Failed application")
+		loggerSystem.Response200(r, "Welcome")
 
 		_, _ = fmt.Fprintf(w, "Hello %s", name)
 	})

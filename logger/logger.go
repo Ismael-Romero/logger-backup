@@ -60,10 +60,9 @@ func (l *Logger) Backup() {
 	}
 }
 
-func (l *Logger) encoder(content LogData) {
+func encoder(l *Logger, content interface{}) {
 	l.mutex.Lock()
 	l.data = append(l.data, content)
-
 	file, err := openLogFile(l.path, flagOpen)
 
 	if err != nil {
@@ -71,8 +70,8 @@ func (l *Logger) encoder(content LogData) {
 		return
 	}
 
-	encoder := json.NewEncoder(file)
-	err = encoder.Encode(l.data)
+	_encoder := json.NewEncoder(file)
+	err = _encoder.Encode(l.data)
 
 	if err != nil {
 		log.Println(err.Error())

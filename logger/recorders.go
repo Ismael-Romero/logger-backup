@@ -1,30 +1,58 @@
 package logger
 
-import "time"
+import (
+	"net/http"
+	"time"
+)
 
 func (l *Logger) Info(m string) {
-	content := LogData{
-		Level:   "Info",
-		Date:    time.Now().Format("2006-01-02 15-04-05"),
-		Message: m,
+	content := logData{
+		Type:  "System",
+		Level: "info",
+		Date:  time.Now().Format("2006-01-02 15:04:05"),
+		Body: defaultBody{
+			Message: m,
+		},
 	}
-	l.encoder(content)
+	encoder(l, content)
 }
 
 func (l *Logger) Error(m string) {
-	content := LogData{
-		Level:   "Error",
-		Date:    time.Now().Format("2006-01-02 15-04-05"),
-		Message: m,
+	content := logData{
+		Type:  "System",
+		Level: "Error",
+		Date:  time.Now().Format("2006-01-02 15:04:05"),
+		Body: defaultBody{
+			Message: m,
+		},
 	}
-	l.encoder(content)
+	encoder(l, content)
 }
 
 func (l *Logger) Warning(m string) {
-	content := LogData{
-		Level:   "Warning",
-		Date:    time.Now().Format("2006-01-02 15-04-05"),
-		Message: m,
+	content := logData{
+		Type:  "System",
+		Level: "Warning",
+		Date:  time.Now().Format("2006-01-02 15:04:05"),
+		Body: defaultBody{
+			Message: m,
+		},
 	}
-	l.encoder(content)
+	encoder(l, content)
+}
+
+func (l *Logger) Response200(r *http.Request, m string) {
+	content := logData{
+		Type:  "Response",
+		Level: "info",
+		Date:  time.Now().Format("2006-01-02 15:04:05"),
+		Body: detailsRequest{
+			From:     r.RemoteAddr,
+			Protocol: r.Proto,
+			Method:   r.Method,
+			URL:      r.RequestURI,
+			Status:   200,
+		},
+	}
+	encoder(l, content)
 }
