@@ -4,8 +4,8 @@
 *.dll
 *.so
 *.dylib
-.idea
-# Test binary, built with `go test -c`
+
+# logger binary, built with `go test -c`
 *.test
 
 # Output of the go coverage tool, specifically when used with LiteIDE
@@ -13,3 +13,7 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+# Project
+.idea
+/logs
