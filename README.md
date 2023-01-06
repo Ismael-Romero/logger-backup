@@ -1,7 +1,7 @@
 # ⚙️Logger Backup
 
 > ### version: 1.0.0
-
+Logger Backup is a logger capable of generating logs in json format and making backup copies without interrupting the execution of other processes.
 
 ## ℹ️ How to use
 Clone the repository to a directory of your choice and make a copy of the Logger folder to your project:
